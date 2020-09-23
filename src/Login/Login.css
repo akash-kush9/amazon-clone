@@ -1,0 +1,81 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  height: 100vh;
+  overflow-y: scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://i.ytimg.com/vi/3tB3rKkwAJY/maxresdefault.jpg");
+}
+.login::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.login {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.login__logo {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100px;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 99px;
+  /* border: 1px solid red; */
+}
+.login__container {
+  background-color: white;
+  width: 300px;
+  border: 1px solid lightgray;
+  height: fit-content;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 20px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+}
+
+.login__container > h1 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.login__container > form > h5 {
+  margin-bottom: 5px;
+}
+.login__container > form > input {
+  margin-bottom: 10px;
+  width: 98%;
+  height: 20px;
+  background-color: white;
+}
+.login__container > p {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-bottom: 1px solid lightgray;
+}
+
+.login__singInButton {
+  background-color: #cd9042;
+  height: 30px;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 2px;
+  border: 1px solid;
+  border-color: #a88734 #9c7e31 #846a29;
+}
+.login__registerButton {
+  border: 1px solid darkgray;
+  border-radius: 2px;
+  width: 100%;
+  height: 30px;
+}
