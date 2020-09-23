@@ -18,7 +18,7 @@ const Product = ({ id, title, price, image, rating }) => {
     });
   };
   return (
-    <div className="product" id={id}>
+    <div className="product" key={id} id={id}>
       <div className="product__info">
         <p>{title}</p>
         <p className="product__price">
