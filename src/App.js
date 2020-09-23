@@ -14,13 +14,36 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/checkout">
+          <Route
+            path="/checkout"
+            render={(props) => (
+              <>
+                <Header {...props} /> <Checkout {...props} />
+              </>
+            )}
+          />
+          <Route
+            path="/payment"
+            render={(props) => (
+              <>
+                <Header {...props} /> <Payment {...props} />
+              </>
+            )}
+          />
+          <Route
+            path="/help/customer/terms_condition"
+            render={(props) => (
+              <>
+                <Header {...props} /> <h1>Terms Condition</h1>
+                {/* <TermsCondition /> */}
+              </>
+            )}
+          />
+
+          <Route path="/help/customer/user_privacy">
             <Header />
-            <Checkout />
-          </Route>
-          <Route path="/payment">
-            <Header />
-            <Payment />
+            <h1>User Privacy</h1>
+            {/* <UserPrivacy /> */}
           </Route>
           <Route path="/">
             <Header />
