@@ -30,7 +30,7 @@ export const initialState = {
       rating: 5,
     },
   ],
-  user: null,
+  authuser: null,
 };
 
 //Selectors
@@ -43,6 +43,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         basket: [...state.basket, action.item],
+      };
+    case actionTypes.SET_USER:
+      return {
+        ...state,
+        authuser: action.authuser,
       };
     case actionTypes.REMOVE_FROM_BASKET:
       const index = state.basket.findIndex(
