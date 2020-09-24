@@ -2,6 +2,8 @@ import React from "react";
 import "./CheckoutProduct.css";
 import { useStateValue } from "../../StateProvider/StateProvider";
 import * as actionTypes from "../../StateProvider/actionTypes";
+import { Link } from "react-router-dom";
+
 const CheckoutProduct = () => {
   const [{ basket }, dispatch] = useStateValue();
   const removeBasketItem = (id) => {
@@ -11,15 +13,28 @@ const CheckoutProduct = () => {
     });
   };
   return (
+    /* background-image: url(""); */
+
     <div className="checkoutProducts">
       {basket?.length == 0 ? (
         <div className="checkoutProduct__emptyBasket">
-          <img src="%PUBLIC_URL%/emptyBasket.png" />
-          Oh snap empty basket
+          <div className="checkoutProduct__empMsg">
+            OH SNAP!! YOU HAVE EMPTY BASKET{" "}
+          </div>
+          <div className="checkoutProduct__empMsg">
+            <Link
+              className="checkoutProduct__navLink"
+              to="/"
+            >{`<<-- Add new items in Basket -->>`}</Link>
+          </div>
+          <img
+            className="checkoutProduct__empImg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT05yb5FU6uPjE4OiD-Ea6Vwqs1fK80m4xHQw&usqp=CAU"
+          />
         </div>
       ) : (
         basket.map((item) => (
-          <div className="checkoutProduct" id={item.id}>
+          <div className="checkoutProduct" key={item.id} id={item.id}>
             <small
               onClick={() => {
                 removeBasketItem(item.id);
