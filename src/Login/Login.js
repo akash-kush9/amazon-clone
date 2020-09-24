@@ -13,8 +13,14 @@ const Login = () => {
   const [error, setError] = useState(null);
   const signIn = (e) => {
     e.preventDefault();
-    // auth.signInWithPopup()
-    console.log("   ", email, "   ", password);
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((authuser) => {
+        history.goBack();
+      })
+      .catch((e) => {
+        setError({ code: e.code.split("/")[1], message: e.message });
+      });
   };
 
   const registerWithEmail = (e) => {
@@ -23,17 +29,10 @@ const Login = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authuser) => {
-        // console.log(authuser);s
-        console.log(authuser.user.email);
-        dispatch({
-          type: actionTypes.SET_USER,
-          authuser: authuser,
-        });
         history.push("/");
       })
       .catch((e) => {
         setError({ code: e.code.split("/")[1], message: e.message });
-        console.error(e);
       });
   };
   const registerWithGoogle = (e) => {
@@ -52,6 +51,9 @@ const Login = () => {
 
   return (
     <div className="login">
+      {error?.code === "too-many-requests" || "wrong-password"
+        ? alert(error.message)
+        : null}
       <Link to="/">
         <img
           className="login__logo"
