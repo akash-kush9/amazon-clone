@@ -31,6 +31,12 @@ const Subtotal = () => {
         prefix={"$"}
       />
       <button
+        disabled={basket?.length === 0 ? true : false}
+        className={
+          basket?.length === 0
+            ? " subtotal__buttonDisabled"
+            : "subtotal__button"
+        }
         onClick={(e) => {
           console.log(history);
           history.push("/payment");
