@@ -15,7 +15,8 @@ const Checkout = () => {
         />
         <div>
           <h3 className="checkout__title">
-            Hello, {authuser?.displayName || authuser?.email.split("@")[0]}
+            Hello,
+            {authuser?.displayName || authuser?.email.split("@")[0] || "Guest"}
           </h3>
           <h2 className="checkout__title">Your Shopping Basket</h2>
         </div>
