@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Header from "./Header/Header";
 import Home from "./Home/Home";
@@ -6,7 +6,29 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Checkout from "./Checkout/Checkout";
 import Payment from "./Payment/Payment";
 import Login from "./Login/Login";
+import { auth } from "./firebase";
+import { useStateValue } from "./StateProvider/StateProvider";
+import * as actionTypes from "./StateProvider/actionTypes";
 function App() {
+  const [{}, dispatch] = useStateValue();
+  useEffect(() => {
+    auth.onAuthStateChanged((authuser) => {
+      console.log("authuser", authuser);
+      if (authuser) {
+        // If user was or is logged in
+        dispatch({
+          type: actionTypes.SET_USER,
+          authuser: authuser,
+        });
+      } else {
+        //the user is loggout
+        dispatch({
+          type: actionTypes.SET_USER,
+          authuser: null,
+        });
+      }
+    });
+  }, []);
   return (
     <Router>
       <div className="App">
