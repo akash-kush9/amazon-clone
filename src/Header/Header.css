@@ -45,14 +45,20 @@
   margin-left: 10px;
   margin-right: 10px;
   color: white;
+  cursor: pointer;
 }
 
 .header__optionLineOne {
   font-size: 10px;
 }
+.nav__link {
+  text-decoration: none !important;
+  color: white !important;
+}
 .header__optionLineTwo {
   font-size: 13px;
   font-weight: 800;
+  color: white;
 }
 .header__basketCount {
   margin-left: 10px;
