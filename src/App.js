@@ -9,11 +9,18 @@ import Login from "./Login/Login";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider/StateProvider";
 import * as actionTypes from "./StateProvider/actionTypes";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+// below is a public key
+const promise = loadStripe(
+  "pk_test_51HUvyEFW83lgVIEdy3ajB5VtATauvT6FbazIY1wDP2vOfmrudIe0lui6z02uo7ZfuhQZjCDT5GQzV3ynaPMmuc6X00rSe7jEi2"
+);
+
 function App() {
   const [{}, dispatch] = useStateValue();
   useEffect(() => {
     auth.onAuthStateChanged((authuser) => {
-      console.log("authuser", authuser);
       if (authuser) {
         // If user was or is logged in
         dispatch({
@@ -48,7 +55,10 @@ function App() {
             path="/payment"
             render={(props) => (
               <>
-                <Header {...props} /> <Payment {...props} />
+                <Header {...props} />{" "}
+                <Elements stripe={promise}>
+                  <Payment {...props} />
+                </Elements>
               </>
             )}
           />
