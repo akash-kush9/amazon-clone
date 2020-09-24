@@ -3,10 +3,8 @@ import React, { useState } from "react";
 import "./Login.css";
 import { auth, provider } from "./../firebase";
 import { useStateValue } from "./../StateProvider/StateProvider";
-import * as actionTypes from "./../StateProvider/actionTypes";
 
 const Login = () => {
-  const [{}, dispatch] = useStateValue();
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,8 +49,8 @@ const Login = () => {
 
   return (
     <div className="login">
-      {error?.code === "too-many-requests" || "wrong-password"
-        ? alert(error.message)
+      {error?.code === "too-many-requests" || error?.code === "wrong-password"
+        ? alert(error?.message)
         : null}
       <Link to="/">
         <img
@@ -87,10 +85,9 @@ const Login = () => {
             type="password"
           />
           {error?.code === "weak-password" ? (
-            <div className="login__error"> {error.message} </div>
+            <div className="login__error"> {error?.message} </div>
           ) : null}
           <button
-            // disabled={error}
             className="login__singInButton"
             type="submit"
             onClick={signIn}
