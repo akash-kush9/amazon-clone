@@ -49,7 +49,7 @@ const CheckoutProduct = () => {
               <div className="checkoutProduct__info">
                 <p>{item.title}</p>
                 <p className="checkoutProduct__price">
-                  <small>$</small>
+                  <small>₹</small>
                   <strong> {item.price}</strong>
                 </p>
               </div>
