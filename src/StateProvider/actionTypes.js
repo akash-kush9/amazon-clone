@@ -3,3 +3,4 @@ export const REMOVE_FROM_BASKET = "REMOVE_FROM_BASKET";
 export const UPDATE_TOTAL_PRICE = "UPDATE_TOTAL_PRICE";
 export const SET_USER = "SET_USER";
 export const REMOVE_USER = "REMOVE_USER";
+export const EMPTY_BASKET = "EMPTY_BASKET";
