@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: row;
   height: 100%;
+  border: 1px solid lightgray;
 }
 .checkout__title {
   /* margin-right: 10px; */
@@ -26,4 +27,21 @@
 
 .checkout__right {
   flex: 0.35;
+}
+
+@media screen and (max-width: 700px) {
+  .checkout {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .checkout__left {
+    flex: 1;
+  }
+
+  .checkout__right {
+    flex: 1;
+  }
 }
