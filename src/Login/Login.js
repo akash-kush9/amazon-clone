@@ -6,6 +6,7 @@ import { useStateValue } from "./../StateProvider/StateProvider";
 
 const Login = () => {
   const history = useHistory();
+  const [{ basket }, dispatch] = useStateValue();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -14,9 +15,13 @@ const Login = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((authuser) => {
-        history.goBack();
+        // If basket is filled user has visited our site login from within appso go back
+        // else if basket is empty from someone tries to open through URL from some other
+        // page like chrome tab google search we don't want him to send back there insead to our landing page.
+        basket?.length !== 0 ? history.goBack() : history.push("/");
       })
       .catch((e) => {
+        // The auth messages have format 'auth/wrong-password' so we are spliting (can be skipped also)
         setError({ code: e.code.split("/")[1], message: e.message });
       });
   };
@@ -27,20 +32,19 @@ const Login = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authuser) => {
-        history.push("/");
+        // WE have a listner listening to state change of auth at app component
+        basket?.length !== 0 ? history.goBack() : history.push("/");
       })
       .catch((e) => {
         setError({ code: e.code.split("/")[1], message: e.message });
       });
   };
-  const registerWithGoogle = (e) => {
-    e.preventDefault();
-    return null;
+  const registerWithGoogle = () => {
     // firebase register
     auth
       .signInWithPopup(provider)
-      .then((user) => {
-        console.log(user);
+      .then((authuser) => {
+        basket?.length !== 0 ? history.goBack() : history.push("/");
       })
       .catch((error) => {
         setError({ code: error.code.split("/")[1], message: error.message });
