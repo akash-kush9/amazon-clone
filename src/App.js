@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
 import "./App.css";
+// Components
 import Header from "./Header/Header";
 import Home from "./Home/Home";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Checkout from "./Checkout/Checkout";
 import Payment from "./Payment/Payment";
 import Login from "./Login/Login";
+import Orders from "./Orders/Orders";
+// 3rd Party apis
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+// Inbuilt functionality
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider/StateProvider";
 import * as actionTypes from "./StateProvider/actionTypes";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 
 // below is a public key
 const promise = loadStripe(
@@ -59,6 +63,14 @@ function App() {
                 <Elements stripe={promise}>
                   <Payment {...props} />
                 </Elements>
+              </>
+            )}
+          />
+          <Route
+            path="/orders"
+            render={(props) => (
+              <>
+                <Header {...props} /> <Orders {...props} />
               </>
             )}
           />
